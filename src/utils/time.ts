@@ -18,14 +18,10 @@ const convertLessonToEvent = (
   return {
     uid: String(lesson.id),
     title: options.subjectFirst
-      ? `${lesson.su.map((s) => s.longname).join(", ")}\n${lesson.su.map((s) => s.name).join(", ")}}`
-      : `${lesson.su.map((s) => s.name).join(", ")}}\n${lesson.su.map((s) => s.longname).join(", ")}`,
+      ? `${lesson.su.map((s) => s.longname).join(", ")}`
+      : `${lesson.su.map((s) => s.name).join(", ")}`,
     location: lesson.ro.map((room) => room.longname).join(", "),
-    description: `Subject id: ${lesson.su
-      .map((s) => s.id)
-      .join(", ")}\nTeacher: ${lesson.te
-      .map((teacher) => teacher.longname)
-      .join(", ")}\nClasses: ${lesson.kl.map((s) => s.name).join(" ")}`,
+    description: `Subject: ${lesson.su.map((s) => s.longname).join(", ")} [${lesson.su.map((s) => s.id).join(", ")}]\nTeacher: ${lesson.te.map((teacher) => teacher.longname).join(", ")}\nClasses: ${lesson.kl.map((s) => s.name).join(" ")}`,
     startInputType: "local",
     startOutputType: "local",
     start: convertDateToDateArray(
